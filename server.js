@@ -7,6 +7,7 @@ import helmet from "helmet";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import sessionConfig from "./config/session.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -24,7 +25,7 @@ app.use(morgan("dev"));
 app.use(session(sessionConfig));
 
 // Routes
-app.use("/api/auth", (await import("./routes/authRoutes.js")).default);
-app.use("/api/posts", (await import("./routes/postRoutes.js")).default);
+app.use("/api/auth", authRoutes);
+// app.use("/api/posts", (await import("./routes/postRoutes.js")).default);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
