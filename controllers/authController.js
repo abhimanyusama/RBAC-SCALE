@@ -1,8 +1,6 @@
 import User from '../models/User.js'
 import bcrypt from "bcrypt"
 
- 
-
 export const signup = async (req, res) => {
   try {
     const { username, email, password, role, attributes } = req.body;
@@ -44,6 +42,7 @@ catch(err)
 };
 
 export const logout = (req, res) => {
+    console.log("This is the req session data: ", req.session);
   req.session.destroy(err => {
     if (err) {
         console.log("logout api", err);
